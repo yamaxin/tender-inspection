@@ -510,19 +510,19 @@ def set_status_cell_color(cell):
 
 ```python
 # 1. 先生成 .md
-with open('/Users/yamaxin/Desktop/标书检查报告.md', 'w') as f:
+with open(os.path.expanduser('~/Desktop/标书检查报告.md'), 'w') as f:
     f.write(report_content)
 
 # 2. 验证 .md 写入成功
 import os
-assert os.path.exists('/Users/yamaxin/Desktop/标书检查报告.md'), "MD文件未成功写入"
+assert os.path.exists(os.path.expanduser('~/Desktop/标书检查报告.md')), "MD文件未成功写入"
 
 # 3. 用 python-docx 生成带表格的 .docx
 from docx import Document
 from docx.shared import Pt
 import re
 
-with open('/Users/yamaxin/Desktop/标书检查报告.md', 'r') as f:
+with open(os.path.expanduser('~/Desktop/标书检查报告.md'), 'r') as f:
     content = f.read()
 
 doc = Document()
@@ -627,7 +627,7 @@ while i < len(lines):
         add_paragraph(doc, line.strip())
     i += 1
 
-doc.save('/Users/yamaxin/Desktop/标书检查报告.docx')
+doc.save(os.path.expanduser('~/Desktop/标书检查报告.docx'))
 print(f"DOCX生成成功，共{len(doc.tables)}个表格")
 ```
 
@@ -766,8 +766,7 @@ text = read_page(27)  # 读第27页
 - 目录标注页261-264，但实际内容在别的页 → 以正文实际内容为准
 - 目录标注"没有体现""需重新提供""不全" → 提示该处有缺失
 
-### 文件保存路径
-**`/Users/yamaxin/Desktop/`**
+**文件保存路径：** `~/Desktop/`（自动展开为用户桌面目录，如 `/Users/yamaxin/Desktop/`）
 
 ---
 
